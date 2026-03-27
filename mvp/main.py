@@ -4,7 +4,7 @@ from cpp_template import wrap_tests
 
 
 def main():
-    with open("examples/sample1.cpp") as f:
+    with open("mvp/examples/sample1.cpp") as f:
         code = f.read()
 
     funcs = parse_func(code)
@@ -15,7 +15,7 @@ def main():
 
     final = wrap_tests(test)
 
-    with open("output.cpp", "w") as f:
+    with open("mvp/output.cpp", "w") as f:
         f.write(final)
 
 if __name__ == "__main__":
