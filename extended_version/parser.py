@@ -4,6 +4,7 @@ import os
 lib_path = '/opt/homebrew/opt/llvm/lib/libclang.dylib'
 if os.path.exists(lib_path):
     clang.cindex.Config.set_library_file(lib_path)
+# я потом поменяю 4 строчки выше - это мой временный костыль
 
 class CppParser:
     def __init__(self):
