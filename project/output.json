@@ -1,0 +1,20 @@
+[
+  {
+    "name": "foo",
+    "start_line": 3,
+    "end_line": 11,
+    "args_count": 1,
+    "cyclomatic_complexity": 3,
+    "max_nesting_depth": 2,
+    "loc": 9
+  },
+  {
+    "name": "bar",
+    "start_line": 13,
+    "end_line": 16,
+    "args_count": 0,
+    "cyclomatic_complexity": 2,
+    "max_nesting_depth": 1,
+    "loc": 4
+  }
+]
