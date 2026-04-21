@@ -1,0 +1,3 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{Введение}{2}{section*.1}%
+\contentsline {section}{\numberline {1}Постановка задачи}{3}{section.1}%
