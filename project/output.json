@@ -2,19 +2,31 @@
   {
     "name": "foo",
     "start_line": 3,
-    "end_line": 11,
+    "end_line": 18,
     "args_count": 1,
-    "cyclomatic_complexity": 3,
-    "max_nesting_depth": 2,
-    "loc": 9
+    "cyclomatic": 7,
+    "nesting": 2,
+    "loc": 16,
+    "halstead_uniq_elements": 28,
+    "halstead_all_elements": 76,
+    "halstead_volume": 365.3589740763779,
+    "halstead_difficulty": 20.090909090909093,
+    "halstead_effort": 7340.39393371632,
+    "halstead_time": 407.79966298424
   },
   {
     "name": "bar",
-    "start_line": 13,
-    "end_line": 16,
+    "start_line": 20,
+    "end_line": 23,
     "args_count": 0,
-    "cyclomatic_complexity": 2,
-    "max_nesting_depth": 1,
-    "loc": 4
+    "cyclomatic": 2,
+    "nesting": 1,
+    "loc": 4,
+    "halstead_uniq_elements": 16,
+    "halstead_all_elements": 25,
+    "halstead_volume": 100.0,
+    "halstead_difficulty": 7.5,
+    "halstead_effort": 750.0,
+    "halstead_time": 41.666666666666664
   }
 ]

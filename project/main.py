@@ -1,16 +1,3 @@
-# from project.parser import CppParser
-
-
-
-# def main():
-
-
-
-# if __name__ == "__main__":
-#     main()
-
-
-
 from parser import CppParser
 from analyzer import ComplexityAnalyzer
 import json
