@@ -16,7 +16,10 @@ class CppParser:
             raise ValueError(f"Invalid standard: {standard}")
 
         version = standard.replace("cpp", "")
-        return [f"-std=c++{version}"]
+        return [
+            "-x", "c++",
+            f"-std=c++{version}"
+        ]
 
 
     #main parser

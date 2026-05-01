@@ -3,6 +3,7 @@ from pathlib import Path
 from rich.console import Console
 from rich.table import Table
 from typing import Literal
+import fnmatch
 
 
 app = typer.Typer(help="Tenrek is C++ code complexity analyzer tool")
@@ -24,8 +25,8 @@ def analyze_file(path: Path, standard: str):
     return analyzer.analyze()
 
 
-def show_result(result: list):
-    table = Table(title="Analysis Result")
+def show_result(result: list, file_name):
+    table = Table(title=f"Analysis result of {file_name}")
 
     table.add_column("Name", style="cyan")
     table.add_column("Type")
@@ -44,9 +45,9 @@ def show_result(result: list):
     console.print(table)
 
 
-def show_multiple(results: list):
-    for res in results:
-        show_result(res)
+def show_multiple(results: list, file_names):
+    for i in range(len(file_names)):
+        show_result(results[i], file_names[i])
 
 
 @app.command()
@@ -63,13 +64,21 @@ def file(
 
     result = analyze_file(path, standard)
 
-    show_result(result)
+    show_result(result, path)
+
 
 @app.command()
 def folder(
     path: Path = typer.Argument(..., exists=True),
     standard: Literal["cpp17", "cpp20", "cpp23"] = typer.Option(
-        "cpp17", "--standard", help="C++ standard"
+        "cpp17",
+        "--standard", 
+        help="Write correct C++ standard (e.g cpp17)"
+    ),
+    exclude: list[str] = typer.Option(
+        None,
+        "--exclude",
+        help="Exclude file or pattern (can be used multiple times)"
     ),
 ):
     """
@@ -78,8 +87,18 @@ def folder(
     console.print(f"[bold blue]Analyzing folder:[/bold blue] {path}")
 
     results = []
+    patterns = ["*.cpp", "*.hpp", "*.h"]
+    file_names = []
 
-    for file in path.rglob("*.cpp"):
-        results.append(analyze_file(file, standard))
+    for pattern in patterns:
+        for file in path.rglob(pattern):
+            relative = str(file.relative_to(path))
 
-    show_multiple(results)
+            if any(fnmatch.fnmatch(relative, ex) for ex in exclude):
+                console.print(f"[yellow]Skipped:[/yellow] {relative}")
+                continue
+
+            results.append(analyze_file(file, standard))
+            file_names.append(relative)
+
+    show_multiple(results, file_names)

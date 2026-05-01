@@ -1,4 +1,4 @@
-coursework_sem2/
+tenrek/
  ├── README.md
  ├── requirements.txt  
  ├── .venv
