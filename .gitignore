@@ -1,5 +1,31 @@
-.o
-.venv/
+# Python
 __pycache__/
+*.pyc
+*.pyo
+
+# virtual env
+venv/
+.venv/
+env/
+
+# build
+build/
+dist/
+*.egg-info/
+
+# secrets
+.env
+.pypirc
+
+# IDE
 .vscode/
+
+# system
 .DS_Store
+
+
+# logs
+*.log
+
+# binary files
+.o

@@ -53,13 +53,20 @@ def show_multiple(results: list, file_names):
 @app.command()
 def file(
     path: Path = typer.Argument(..., exists=True),
-    standard: Literal["cpp11", "cpp14", "cpp17", "cpp20", "cpp23"] = typer.Option(
-        "cpp17", "--standard", help="C++ standard"
+    standard: str = typer.Option(
+        "cpp17",
+        "--standard",
+        help="Write correct C++ standard (e.g cpp17)"
     ),
 ):
     """
     Analyze single file
     """
+
+    allowed = {"cpp11", "cpp14", "cpp17", "cpp20", "cpp23"}
+    if standard not in allowed:
+        raise typer.BadParameter("Use cpp11/cpp14/cpp17/cpp20/cpp23")
+
     console.print(f"[bold green]Analyzing file:[/bold green] {path}")
 
     result = analyze_file(path, standard)
@@ -70,7 +77,7 @@ def file(
 @app.command()
 def folder(
     path: Path = typer.Argument(..., exists=True),
-    standard: Literal["cpp17", "cpp20", "cpp23"] = typer.Option(
+    standard: str = typer.Option(
         "cpp17",
         "--standard", 
         help="Write correct C++ standard (e.g cpp17)"
@@ -84,6 +91,11 @@ def folder(
     """
     Analyze folder
     """
+
+    allowed = {"cpp11", "cpp14", "cpp17", "cpp20", "cpp23"}
+    if standard not in allowed:
+        raise typer.BadParameter("Use cpp11/cpp14/cpp17/cpp20/cpp23")
+
     console.print(f"[bold blue]Analyzing folder:[/bold blue] {path}")
 
     results = []
@@ -102,3 +114,7 @@ def folder(
             file_names.append(relative)
 
     show_multiple(results, file_names)
+
+
+if __name__ == "__main__":
+    app()
