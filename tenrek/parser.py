@@ -18,7 +18,7 @@ class CppParser:
         version = standard.replace("cpp", "")
         return [
             "-x", "c++",
-            f"-std=c++{version}"
+            f"-std=c++{version}",
         ]
 
 

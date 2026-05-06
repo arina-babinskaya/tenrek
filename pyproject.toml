@@ -1,13 +1,13 @@
 [project]
 name = "tenrek"
-version = "0.1.0"
+version = "0.1.1"
 description = "code complexity analyzer tool"
 authors = [
-    {name = "Arina Babinskya",email = "rianawilson94@gmail.com"}
+    {name = "Arina Babinskaya",email = "rianawilson94@gmail.com"}
 ]
 license = {file = "LICENSE"}
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.10,<3.14"
 
 dependencies = [
     "typer>=0.9.0",

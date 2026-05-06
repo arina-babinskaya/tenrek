@@ -6,7 +6,7 @@ def calculate(node):
         for inc in tu.get_includes():
             if inc.include:
                 includes.add(inc.include.name)
-    except:
+    except Exception:
         pass
 
     return {

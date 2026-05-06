@@ -13,6 +13,18 @@ files = [
 ]
 
 [[package]]
+name = "clang"
+version = "21.1.7"
+description = "libclang python bindings"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "clang-21.1.7-py3-none-any.whl", hash = "sha256:23ee8f7b62af648009aee5139516b2a2a9320680dbce6e42a53e48bd5e8983ea"},
+    {file = "clang-21.1.7.tar.gz", hash = "sha256:01d5602b3fff77fef6d691a193d7aead4766b0f11d789d596200f3334a88f4b8"},
+]
+
+[[package]]
 name = "click"
 version = "8.3.3"
 description = "Composable command line interface toolkit"
@@ -143,4 +155,4 @@ shellingham = ">=1.3.0"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10"
-content-hash = "01e4f0284083146554735cb3278023244cc0ff29f5445d49e39f76b9abab15fb"
+content-hash = "ef1819a16aefca6b41c38ea78cb581549d585ab1210990b4f0906f162cb0abe6"

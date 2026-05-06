@@ -1,12 +1,16 @@
 tenrek/
  ├── README.md
  ├── requirements.txt  
- ├── .venv
- ├── project/
+ ├── LICENSE
+ ├── poerty.lock
+ ├── pyproject.toml
+ ├── tenrek/
  │    ├── parser.py
  │    ├── json_generator.py  
  │    ├── test_file.cpp
  │    ├── analyzer.py
+ │    ├── evaluator.py
+ │    ├── folder_parser.py
  │    ├── metrics/
  │    │     ├── cyclomatic.py
  │    │     ├── cognitive_complexity.py

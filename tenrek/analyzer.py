@@ -4,9 +4,13 @@ from tenrek.metrics import nesting
 from tenrek.metrics import loc
 from tenrek.metrics import nloc
 from tenrek.metrics.for_classes import god_class
+from tenrek.metrics.for_classes import lcom1
+from tenrek.metrics.for_classes import lcom4
 from tenrek.metrics import longest_string
-from tenrek.metrics import average_string_lenght
+from tenrek.metrics import average_string_length
 from tenrek.metrics import maintainability_index
+from tenrek.metrics.fifo import fan_in
+from tenrek.metrics.fifo import fan_out
 from tenrek.metrics.halstead import halstead_uniq_elements
 from tenrek.metrics.halstead import halstead_all_elements
 from tenrek.metrics.halstead import halstead_volume
@@ -19,6 +23,19 @@ class ComplexityAnalyzer:
         self.parser = parser
         self.standard = standard
 
+
+    def _run_metric(self, metric, node):
+        """
+        Если метрике нужен parser -> передаём parser
+        иначе обычный calculate(node)
+        """
+
+        if metric in [fan_in, fan_out]:
+            return metric.calculate(node, self.parser)
+
+        return metric.calculate(node)
+    
+
     def analyze(self):
         results = []
         function_metrics = [
@@ -28,7 +45,7 @@ class ComplexityAnalyzer:
             loc,
             nloc,
             longest_string,
-            average_string_lenght,
+            average_string_length,
             maintainability_index,
             halstead_uniq_elements,
             halstead_all_elements,
@@ -44,7 +61,11 @@ class ComplexityAnalyzer:
             nesting,
             god_class,
             longest_string,
-            average_string_lenght
+            average_string_length,
+            fan_in,
+            fan_out,
+            lcom1,
+            lcom4
         ]
 
         functions = self.parser.get_functions()
@@ -55,7 +76,7 @@ class ComplexityAnalyzer:
 
             for metric in function_metrics:
                 name = metric.__name__.split('.')[-1]
-                result[name] = metric.calculate(func)
+                result[name] = self._run_metric(metric, func)
 
             results.append(result)
 
@@ -68,7 +89,7 @@ class ComplexityAnalyzer:
 
             for metric in function_metrics:
                 name = metric.__name__.split('.')[-1]
-                result[name] = metric.calculate(method)
+                result[name] = self._run_metric(metric, method)
 
             results.append(result)
 
@@ -81,7 +102,7 @@ class ComplexityAnalyzer:
 
             for metric in class_metrics:
                 name = metric.__name__.split('.')[-1]
-                result[name] = metric.calculate(clas)
+                result[name] = self._run_metric(metric, clas)
 
             results.append(result)
 

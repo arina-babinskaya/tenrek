@@ -1,5 +1,6 @@
 # Python
 __pycache__/
+.pytest_cache/
 *.pyc
 *.pyo
 
@@ -29,3 +30,13 @@ dist/
 
 # binary files
 .o
+
+.venv/
+venv/
+path/to/venv/
+tenrek/path/
+__pycache__/
+*.pyc
+dist/
+build/
+*.egg-info/
